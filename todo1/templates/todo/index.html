@@ -1,0 +1,30 @@
+
+<form method='POST'>
+    {% csrf_token %}
+    {{form}}
+    <input type=submit>
+</form>
+<button type='button'>delete completed</button>
+<h2>task to be completed </h2>
+<ul>
+    {% for todo in todo %}
+        
+      {% if not todo.complete %}
+         <li><a href = "{% url 'complete' todo.id %} "> {{todo}}</a></li>          
+        
+      {% endif %}   
+
+    {% endfor %}
+<ul>
+<h2>task completed</h2>
+<a href ="{% url 'deletecompleted' %}" > <button type='button'>delete completed</button></a>
+<ul>
+    {% for todo in todo %}
+        
+      {% if todo.complete %}
+         <li> {{todo}}</li>          
+        
+      {% endif %}   
+
+    {% endfor %}
+<ul>
